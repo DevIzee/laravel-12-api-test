@@ -1,8 +1,19 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\PersonnelController;
 
-Route::apiResource('personnels', PersonnelController::class);
-Route::apiResource('produits', ProductController::class);
+// Routes publiques
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+// Routes protégées
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::apiResource('personnels', PersonnelController::class);
+    Route::apiResource('produits', ProductController::class);
+});
