@@ -26,7 +26,7 @@ class PersonnelController extends Controller
     public function store(StorePersonnelRequest $request)
     {
         $personnel = Personnel::create($request->validated());
-        return (new PersonnelResource($personnel->load(['user', 'produits'])))->response()->setStatusCode(201);
+        return (new PersonnelResource($personnel->load(['user', 'products'])))->response()->setStatusCode(201);
     }
 
     /**
@@ -34,7 +34,7 @@ class PersonnelController extends Controller
      */
     public function show(Personnel $personnel)
     {
-        return new PersonnelResource($personnel->load(['user', 'produits']));
+        return new PersonnelResource($personnel->load(['user', 'products']));
     }
 
     /**
@@ -43,7 +43,7 @@ class PersonnelController extends Controller
     public function update(UpdatePersonnelRequest $request, Personnel $personnel)
     {
         $personnel->update($request->validated());
-        return new PersonnelResource($personnel->load(['user', 'produits']));
+        return new PersonnelResource($personnel->load(['user', 'products']));
     }
 
     /**

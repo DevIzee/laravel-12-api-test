@@ -16,7 +16,7 @@ class PersonnelResource extends JsonResource
             'user' => new UserResource($this->whenLoaded('user')),
             'profession' => $this->profession,
             'is_actif' => $this->is_actif,
-            'produits' => ProductResource::collection($this->whenLoaded('produits')),
+            'products' => ProductResource::collection($this->whenLoaded('products')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
